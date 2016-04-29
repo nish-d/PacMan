@@ -2,20 +2,26 @@
 using System.Collections;
 
 public class Movement_touch : MonoBehaviour {
+	
 	public float mouseX, mouseY;
+	public Vector3 worldPos;
 	public int x=0;
 	public float speed = 2;
-	public Vector3 worldPos;
+
 	public int eaten = 0;
 	public static int highscore;
-	public int first = 0;
-	public bool gameOver = false;
+	public TextMesh score;
+
+	//audioclips
+	public AudioClip eatme;
+	private AudioSource source;
+
 	public bool touching = false;
 	// Use this for initialization
-	public TextMesh score;
-	//public TextMesh life;
+
+
 	void Start () {
-		//print (transform.position);
+		source = GetComponent<AudioSource> ();
 		Screen.SetResolution(217, 316, true);
 	}
 
@@ -63,30 +69,27 @@ public class Movement_touch : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D y){
 		if (y.gameObject.tag == "bounds") {
-			Vector3 collisionPos = y.bounds.center;
-			if (x == 3 || x == 4) {
-
-				if (collisionPos.x > transform.position.x) {
-					//print (" collider to the right");
-					left ();
-				} else if (collisionPos.x < transform.position.x) {
-					//print ("collider to the left");
-					right ();
-				} 
-			} else {
-				if (collisionPos.y > transform.position.y) {
-					down ();
-					//print ("collider to the top");
-				} else {
-					up ();
-					//print ("collider to the bottom");
-				}
+			switch (x) {
+			case 1:
+				down ();
+				break;
+			case 2:
+				up ();
+				break;
+			case 3:
+				left ();
+				break;
+			case 4:
+				right ();
+				break;
 			}
 		}
 			if (y.gameObject.tag == "eat") {
 				Destroy (y.gameObject);
 				eaten += 1;
 				score.text = eaten.ToString ();
+
+			source.PlayOneShot (eatme);
 			if (highscore < eaten)
 				highscore = eaten;
 			}
@@ -99,18 +102,18 @@ public class Movement_touch : MonoBehaviour {
 
 	void left()
 	{transform.position += Vector3.left * 25;
-		//print ("left");
+		
 	}
 	void right()
 	{transform.position += Vector3.right * 25;
-		//print ("right");
+		
 	}
 	void up(){
-		//print ("up");
+		
 		transform.position += Vector3.up * 25;
 	}
 	void down(){
-		//print ("down");
+		
 		transform.position += Vector3.down * 25;
 	}
 		

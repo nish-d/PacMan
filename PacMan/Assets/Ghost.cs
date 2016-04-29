@@ -8,6 +8,10 @@ public class Ghost : MonoBehaviour {
 	private float speed=5f;
 	public static int lives;
 	public TextMesh life;
+
+	public AudioClip caught;
+	public AudioClip gameOver;
+	private AudioSource source;
 	// Use this for initialization
 	void Start () {
 		if (life.text == "3")
@@ -18,6 +22,7 @@ public class Ghost : MonoBehaviour {
 			lives = 1;
 		else
 			lives = 0;
+		source = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -36,11 +41,20 @@ public class Ghost : MonoBehaviour {
 			//Destroy (co.gameObject);
 			lives--;
 			life.text = lives.ToString ();
-			if (lives == 0)
+			if (lives == 0) {
+				Destroy (co.gameObject);
+				source.PlayOneShot (gameOver);
+				for (int i = 0; i < 10000; i++)
+					for (int j = 0; j < 30000; j++)
+						;
 				Application.LoadLevel ("Menu");
-			else {
+			} else {
+				
+				source.PlayOneShot (caught);
 				co.gameObject.transform.position = new Vector3 (1075.0f, 777.0f, 1501.0f);
 				//transform.position = waypoints [0].position;
+
+			
 			}
 		}
 	}
