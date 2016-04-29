@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4250e35fedb79f04395395ccdc4b1a3f
+timeCreated: 1461910211
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - score: {instanceID: 0}
+  - eatme: {fileID: 8300000, guid: e9a7c8bb0fafc1b43bc5281e667f37fc, type: 3}
+  - caught: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
