@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿	using UnityEngine;
 using System.Collections;
 
 public class Movement_touch : MonoBehaviour {
@@ -47,7 +47,8 @@ public class Movement_touch : MonoBehaviour {
 				mouseX = Input.mousePosition.x;
 				mouseY = Input.mousePosition.y;
 				worldPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-				x = getdiff (worldPos.x, worldPos.y, transform.position); 	
+				x = getdiff (worldPos.x, worldPos.y, transform.position);
+				GetComponent<Animator> ().SetInteger ("dir", x);
 			}
 
 		}
