@@ -8,6 +8,7 @@ public class Menu : MonoBehaviour {
 	void Start () {
 		//Screen.SetResolution (183, 326, true);
 		score.text = Movement_touch.highscore.ToString ();
+		Screen.SetResolution(217, 316, true);
 	}
 	
 	// Update is called once per frame
